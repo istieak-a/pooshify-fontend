@@ -58,6 +58,7 @@ const Hero2 = () => {
 
 
   return (
+
     <div className="py-10 md:px-5">
       <div>
         <h1 className="text-2xl font-medium">New Arivals</h1>
