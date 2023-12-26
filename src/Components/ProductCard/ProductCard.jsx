@@ -2,7 +2,7 @@ import { SfButton, SfRating, SfCounter, SfLink, SfIconShoppingCart, SfIconFavori
 
 export default function ProductCard({img, title, desc, price}) {
   return (
-    <div className="border h-[400px] w-[190px] my-2 md:w-[270px] border-neutral-200 rounded-md hover:shadow-lg">
+    <div className="border h-[400px] w-[38vw] my-2 md:w-[270px] border-neutral-200 rounded-md hover:shadow-lg">
       <div className="relative">
         <SfLink href="#" className="block">
           <img

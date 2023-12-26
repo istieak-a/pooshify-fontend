@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import dummy from '../../assets/dummy.png'
+import { Button } from "antd";
 
 const Hero2 = () => {
 
@@ -73,6 +74,9 @@ const Hero2 = () => {
             <ProductCard key={index} title={item.title} desc={item.desc} img={item.img} price={item.price} />
           ))}
         </div>
+      </div>
+        <div className="flex items-center justify-center pt-5">
+      <Button type="default">View More</Button>
       </div>
     </div>
   );
