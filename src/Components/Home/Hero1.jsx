@@ -3,7 +3,7 @@ import Slider from './Slider'
 
 const Hero1 = () => {
   return (
-    <div>
+    <div className='mt-28'>
       <Slider/>
     </div>
   )

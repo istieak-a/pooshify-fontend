@@ -156,7 +156,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="w-full h-full">
+      <div className="w-full fixed z-40">
       {isOpen && (
         <div className="fixed inset-0 bg-neutral-500 bg-opacity-50 transition-opacity" />
       )}
