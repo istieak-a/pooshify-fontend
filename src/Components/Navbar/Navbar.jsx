@@ -16,7 +16,9 @@ import {
 import { useRef, useState } from "react";
 import { useClickAway } from "react-use";
 import { CSSTransition } from "react-transition-group";
-import ico from '../../assets/dgico.png'
+import ico from "../../assets/dgico.png";
+import { Link } from "react-router-dom";
+import { UserButton, useAuth } from "@clerk/clerk-react";
 
 const actionItems = [
   {
@@ -31,12 +33,12 @@ const actionItems = [
     ariaLabel: "Wishlist",
     role: "button",
   },
-  {
-    icon: <SfIconPerson />,
-    label: "Log in",
-    ariaLabel: "Log in",
-    role: "login",
-  },
+  // {
+  //   icon: <SfIconPerson />,
+  //   label: "Log in",
+  //   ariaLabel: "Log in",
+  //   role: "login",
+  // },
 ];
 
 const bannerDetails = {
@@ -136,11 +138,12 @@ const categoriesContent = [
 ];
 
 export default function Navbar() {
+  const { userId } = useAuth();
+
   const { close, toggle, isOpen } = useDisclosure();
   const drawerRef = useRef(null);
   const menuRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
-
   useTrapFocus(drawerRef, {
     activeState: isOpen,
     arrowKeysUpDown: true,
@@ -156,7 +159,7 @@ export default function Navbar() {
   };
 
   return (
-      <div className="w-full fixed z-40">
+    <div className="w-full fixed z-40">
       {isOpen && (
         <div className="fixed inset-0 bg-neutral-500 bg-opacity-50 transition-opacity" />
       )}
@@ -175,17 +178,16 @@ export default function Navbar() {
           >
             <SfIconMenu className=" text-white" />
           </SfButton>
-          <a
-            href="#"
+          <Link
+            // href="#"
+            to={`/`}
             aria-label="SF Homepage"
             className="flex shrink-0 ml-4 md:ml-0 mr-2 md:mr-10 text-white focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
           >
             <picture>
-              <img
-              className="w-[160px]"
-              src={ico} />              
+              <img className="w-[160px]" src={ico} />
             </picture>
-          </a>
+          </Link>
           <SfButton
             className="hidden md:flex text-white bg-transparent font-body hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
             aria-haspopup="true"
@@ -329,14 +331,22 @@ export default function Navbar() {
                 variant="tertiary"
                 slotPrefix={actionItem.icon}
                 square
-              >
-                {actionItem.role === "login" && (
-                  <p className="hidden lg:inline-flex whitespace-nowrap pr-2">
-                    {actionItem.label}
-                  </p>
-                )}
-              </SfButton>
+              ></SfButton>
             ))}
+            {userId ? (
+              <UserButton />
+            ) : (
+              <Link to={`/signin`}>
+                <SfButton
+                  className="text-white bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
+                  key="Log in"
+                  aria-label="Log in"
+                  variant="tertiary"
+                  slotPrefix={<SfIconPerson />}
+                  square
+                />
+              </Link>
+            )}
           </nav>
         </div>
         <form
