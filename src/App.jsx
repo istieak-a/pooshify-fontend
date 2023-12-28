@@ -4,8 +4,9 @@ import Home from "./Components/Home/Home";
 import Navbar from "./Components/Navbar/Navbar";
 import FooterBasic from "./Components/Footer/FooterBasic";
 import ProductDetails from "./Components/ProductCard/ProductDetails";
-import SignIn from "./Components/Auth/SignIn";
 import { SignedOut, SignedIn } from "@clerk/clerk-react"
+import SignInPage from "./Components/Auth/SigninPage";
+import SignUpPage from "./Components/Auth/SignupPage";
 
 const App = () => {
   return (
@@ -13,7 +14,8 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn/>} />
+        <Route path="/signin" element={<SignInPage/>} />
+        <Route path="/signup" element={<SignUpPage/>} />
         <Route path="/products/:productid" element={<ProductDetails />} />
       </Routes>
       <FooterBasic />
