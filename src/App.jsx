@@ -7,6 +7,8 @@ import ProductDetails from "./Components/ProductCard/ProductDetails";
 import { SignedOut, SignedIn } from "@clerk/clerk-react"
 import SignInPage from "./Components/Auth/SigninPage";
 import SignUpPage from "./Components/Auth/SignupPage";
+import NotFound from "./Components/Error/NotFound";
+import Cart from "./Components/Cart/Cart";
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
         <Route path="/signin" element={<SignInPage/>} />
         <Route path="/signup" element={<SignUpPage/>} />
         <Route path="/products/:productid" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <FooterBasic />
     </BrowserRouter>

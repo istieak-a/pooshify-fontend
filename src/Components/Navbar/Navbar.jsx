@@ -12,6 +12,7 @@ import {
   SfInput,
   SfIconSearch,
   SfIconMenu,
+  SfBadge,
 } from "@storefront-ui/react";
 import { useRef, useState } from "react";
 import { useClickAway } from "react-use";
@@ -323,30 +324,37 @@ export default function Navbar() {
             className="flex-1 flex flex-nowrap justify-end items-center md:ml-10 gap-x-1"
             aria-label="SF Navigation"
           >
-            {actionItems.map((actionItem) => (
-              <SfButton
-                className="text-white bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
-                key={actionItem.ariaLabel}
-                aria-label={actionItem.ariaLabel}
-                variant="tertiary"
-                slotPrefix={actionItem.icon}
-                square
-              ></SfButton>
-            ))}
-            {userId ? (
-              <UserButton />
-            ) : (
-              <Link to={`/signin`}>
+            <div className="flex gap-5">
+              <Link to={'/cart'}>
                 <SfButton
-                  className="text-white bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
-                  key="Log in"
-                  aria-label="Log in"
-                  variant="tertiary"
-                  slotPrefix={<SfIconPerson />}
+                  className="group relative text-white"
                   square
-                />
+                  variant="tertiary"
+                >
+                  <SfIconShoppingCart />
+                  <SfBadge
+                    content={0}
+                    max={99}
+                    className="outline outline-white group-hover:outline-primary-100 group-active:outline-primary-200"
+                  />
+                </SfButton>
               </Link>
-            )}
+
+              {userId ? (
+                <UserButton />
+              ) : (
+                <Link to={`/signin`}>
+                  <SfButton
+                    className="text-white bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
+                    key="Log in"
+                    aria-label="Log in"
+                    variant="tertiary"
+                    slotPrefix={<SfIconPerson />}
+                    square
+                  />
+                </Link>
+              )}
+            </div>
           </nav>
         </div>
         <form
